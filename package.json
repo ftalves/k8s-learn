@@ -1,9 +1,9 @@
 {
-  "name": "k8s-test",
+  "name": "k8s-learn",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "bash tmux.sh"
+    "start": "skaffold dev"
   }
 }

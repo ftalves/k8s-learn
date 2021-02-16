@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: ftalves/test-client
+      context: packages/client #Containing folder
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: ftalves/test-comments
+      context: packages/comments #Containing folder
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ftalves/test-event-bus
+      context: packages/event-bus #Containing folder
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ftalves/test-moderation
+      context: packages/moderation #Containing folder
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ftalves/test-posts
+      context: packages/posts #Containing folder
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: ftalves/test-query
+      context: packages/query #Containing folder
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
